@@ -1,4 +1,6 @@
 import 'package:bloc_app/bloc/internet_bloc/internet_state.dart';
+import 'package:bloc_app/bloc/my_bloc/my_network_bloc.dart';
+import 'package:bloc_app/bloc/my_bloc/my_network_state.dart';
 import 'package:bloc_app/bloc/network_bloc/network_bloc.dart';
 import 'package:bloc_app/bloc/network_bloc/network_state.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,48 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //       appBar: AppBar(
+  //         title: Text("Check Connection"),
+  //       ),
+  //       body: Center(
+  //         child: BlocConsumer<MyInternetBloc, MyInternetState>(
+  //           builder: (BuildContext context, state) {
+  //             if (state is MyInternetConnectedState) {
+  //               print("*********state received connected");
+  //               return Text("Connected");
+  //             } else if (state is MyInternetLostState) {
+  //               print("*********state received not connected");
+  //               return Text("Not connected");
+  //             } else {
+  //               print("*********state received loading");
+  //               return Text("Loading...");
+  //             }
+  //           },
+  //           listener: (BuildContext context, Object? state) {
+  //             if (state is MyInternetConnectedState) {
+  //               print("*********state received connected");
+  //               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //                 content: Text("Connected"),
+  //                 backgroundColor: Colors.green,
+  //               ));
+  //             } else if (state is MyInternetLostState) {
+  //               print("*********state received not connected");
+  //               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //                 content: Text("Disconnected"),
+  //                 backgroundColor: Colors.red,
+  //               ));
+  //             }
+  //           },
+  //         ),
+  //       ));
+  // }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: BlocConsumer<NetworkBloc, NetworkState>(
             builder: (BuildContext context, state) {
               if (state is NetworkSuccess) {
+                print("*********state received connected");
                 return Text("Connected");
               } else if (state is NetworkFailure) {
                 return Text("Not connected");
